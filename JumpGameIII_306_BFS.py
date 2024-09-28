@@ -9,7 +9,7 @@ class Solution(object):
         """
         n = len(arr)
         queue = deque([start])
-        visited = set()
+        visited = set([start])
         
         while queue:
             
@@ -18,13 +18,13 @@ class Solution(object):
             if arr[index] == 0:
                 return True
             
-            if (index + arr[index] < n) and (index + arr[index] >= 0) and (index not in visited):
+            if (index + arr[index] < n) and (index + arr[index] >= 0) and (index + arr[index] not in visited):
                 queue.append(index + arr[index])
+                visited.add(index + arr[index])
             
-            if (index - arr[index] < n) and (index - arr[index] >= 0) and (index not in visited):
+            if (index - arr[index] < n) and (index - arr[index] >= 0) and (index - arr[index] not in visited):
                 queue.append(index - arr[index])
-                
-            visited.add(index)
+                visited.add(index - arr[index])
             
         return False
         
